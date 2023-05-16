@@ -1,0 +1,57 @@
+Hooks são funções exclusivas do React que permitem usar a funcionalidade de estado e ciclo de vida em componentes funcionais. Antes dos ganchos, os componentes funcionais só podiam ser usados para construir componentes de apresentação básicos; eles não podiam controlar o estado interno ou responder a mudanças no ciclo de vida. Os ganchos deram aos componentes funcionais mais poder e a capacidade de realizar atividades que antes estavam disponíveis apenas para componentes de classe.
+
+UseState e useEffect são dois ganchos frequentes e significativos usados no desenvolvimento do React.
+
+
+useState: você pode incluir o estado em um componente funcional usando o gancho useState. A variável de estado atual e uma função para atualizá-la são retornadas como um par. O React atualiza o componente e força uma nova renderização quando a função de atualização de estado é chamada. Um exemplo de utilização de useState é o seguinte:
+
+import React, { useState } from 'react';
+
+função Contador() {
+   const [contagem, setCount] = useState(0);
+
+   incremento constante = () => {
+     setCont(conta + 1);
+   };
+
+   retornar (
+     <div>
+       <p>Contagem: {contagem}</p>
+       <button onClick={incremento}>Incremento</button>
+     </div>
+   );
+}
+
+Neste exemplo, useState é usado para adicionar o estado de contagem ao componente Counter. A função setCount é usada para atualizar o valor do estado de contagem quando o botão é clicado. Sempre que o estado é atualizado, o componente é renderizado novamente e o novo valor do estado é exibido.
+
+
+
+useEffect: Você pode executar efeitos colaterais em componentes funcionais usando o hook useEffect. Fazer chamadas de API, alterar o DOM e realizar outras ações que não são renderizações puras são exemplos de efeitos colaterais. A menos que você especifique uma dependência, useEffect é executado após cada renderização do componente e permite que você responda a alterações de estado, alterações de propriedade ou ações do usuário. Um exemplo de useEffect é mostrado abaixo:
+
+import React, { useState, useEffect } from 'react';
+
+função Temporizador() {
+   const [segundos, setSeconds] = useState(0);
+
+   useEffect(() => {
+     intervalo const = setInterval(() => {
+       setSeconds(segundos + 1);
+     }, 1000);
+
+     retorno () => {
+       clearInterval(intervalo);
+     };
+   }, [segundos]);
+
+   retornar (
+     <div>
+       <p>Segundos: {segundos}</p>
+     </div>
+   );
+}
+
+O estado de segundos é atualizado a cada segundo neste exemplo usando useEffect. A cada 1000 milissegundos, é produzido um intervalo que aumenta o valor do estado segundos. Quando o valor do estado dos segundos mudar, o useEffect irá executar novamente porque está configurado para observar a dependência [segundos].
+
+A função return dentro de useEffect é usada para limpar o intervalo quando o componente é desmontado.
+
+Estes são apenas dois exemplos básicos de como usar useState e useEffect. Existem outros ganchos disponíveis no React que fornecem funcionalidades específicas, como useContext para acessar um contexto, useRef para acessar elementos DOM e muito mais. Os Hooks melhoraram muito a experiência de desenvolvimento no React, permitindo que os componentes funcionais tenham recursos de estado e ciclo de vida, tornando-os mais flexíveis e fáceis de manter
